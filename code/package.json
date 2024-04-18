@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "h2": "^0.3.0",
+    "mysql2": "^3.9.5",
+    "sequelize": "^6.37.3",
+    "sqlite3": "^5.1.7"
   }
 }
