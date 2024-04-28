@@ -1,18 +1,18 @@
-const h2 = require('h2');
 const {Sequelize} = require('sequelize');
 
-// Configuração da conexão com o banco de dados 
-const sequelize = new Sequelize('banco', 'admin', 'admin', {
-  dialect: 'sqlite', // substitua 'nome_do_banco_de_dados' pelo dialeto do seu banco de dados (por exemplo, 'mysql', 'postgres', 'sqlite')
-  host: '192.168.1.2', // substitua pelo host do seu banco de dados
-  port: 8082
+const sequelize = new Sequelize('postgres', 'postgres', 'postgres', {
+  dialect: 'postgres', 
+  host: 'localhost', 
+  port: 5432
 });
 
-// Testar a conexão com o banco de dados
 async function conectar() {
   try {
+    
     await sequelize.authenticate();
     console.log("Banco Conetado");
+    await sequelize.sync();
+    console.log("Banco Sincronizado");
   } catch (error) {
     console.error("Banco de dados não conectado!", error);
     process.exit(1); 
@@ -20,7 +20,6 @@ async function conectar() {
 }
 
   
-
 module.exports = {
    sequelize, conectar
 };

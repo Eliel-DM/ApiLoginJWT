@@ -1,7 +1,7 @@
 //imports
 const express = require('express');
 const { conectar } = require('./config/database');
-const {auth} = require('./routes/authRoutes');
+const auth = require('./routes/authRoutes');
 const server = express();
 
 (async () => {
@@ -9,14 +9,17 @@ const server = express();
         await conectar();
 
     }catch(error){
-        console.error('Data models synchronized ----> BAD', error);
+        console.error('Erro generalizado.');
         process.exit(1);
     }
 
     server.use(express.json());
-    server.use('/api/auth', auth);
+    server.use('/api', auth);
 
-    server.listen(3001, () => {
-        console.log('Servidor rodando em http://localhost:3000');
-    });
+   
+   
+    server.listen(3000, () => {
+    console.log('Servidor Rodando na porta:3000 ');
+  });
+
   })();
