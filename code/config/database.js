@@ -1,9 +1,10 @@
 const {Sequelize} = require('sequelize');
+require('dotenv').config();
 
-const sequelize = new Sequelize('postgres', 'postgres', 'postgres', {
+const sequelize = new Sequelize( process.env.DATABASENAME,  process.env.DATABASEUSERNAME,  process.env.DATABASEPASSWORD, {
   dialect: 'postgres', 
-  host: 'localhost', 
-  port: 5432
+  host: process.env.DATABASEHOST, 
+  port:  process.env.DATABASEPORT
 });
 
 async function conectar() {
@@ -18,7 +19,6 @@ async function conectar() {
     process.exit(1); 
   }
 }
-
   
 module.exports = {
    sequelize, conectar

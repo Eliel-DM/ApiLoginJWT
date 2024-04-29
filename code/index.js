@@ -1,9 +1,8 @@
-//imports
+
 const express = require('express');
 const { conectar } = require('./config/database');
 const auth = require('./routes/authRoutes');
 const server = express();
-
 (async () => {
     try {
         await conectar();
@@ -16,10 +15,9 @@ const server = express();
     server.use(express.json());
     server.use('/api', auth);
 
-   
-   
-    server.listen(3000, () => {
-    console.log('Servidor Rodando na porta:3000 ');
+    const APIPORT = process.env.APIPORT;
+    server.listen(APIPORT, () => {
+    console.log(`Server running on port ----> ${APIPORT}`);
   });
 
   })();
